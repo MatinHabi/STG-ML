@@ -8,14 +8,21 @@ class StochasticGates(nn.Module):
         self.mu = nn.Parameter(torch.full((input_dim,), 0.5))
         self.sigma = sigma_val
 
-    # A * B = matrix mult , A @ B = dot prod
+    # A * B = matrix (element-wise) mult , A @ B = dot prod
     def forward(self,input_featues):
-        noise = torch.randn_like(self.mu) #creates vector of the same size as mu filled with random values from a standard N(0,1) gaussian distribution
-        noise = noise * self.sigma #multiplied by sigma to stretch or narrow the distribution (this is also cuz randn_like has no std_dev input value)
-        gate = noise + self.mu # adds the gaussian noise to the initial gates (mu)
-        gate = torch.clamp(gate,0,1) # clipping the gate values between 0 and 1
-        return gate * input_featues # returns the gate * input features 
+        if self.training :
+            noise = torch.randn_like(self.mu) #creates vector of the same size as mu filled with random values from a standard N(0,1) gaussian distribution
+            noise = noise * self.sigma #multiplied by sigma to stretch or narrow the distribution (this is also cuz randn_like has no std_dev input value)
+            gate = noise + self.mu # adds the gaussian noise to the initial gates (mu)
+            gate = torch.clamp(gate,0,1) # clipping the gate values between 0 and 1
+            return gate * input_featues # returns the gate * input features 
+        else:
+            #during training we have these learnt features, mu, for each input feature. mu has a gaussian noise which is added to it in TRAINING only.
+            #The gaussian noise is multiplied by the hyperparmeter sigma and it's job to make the model re-evaluate some of the input features it may have ruled out DURING TRAINING ONLY.
+            #during testing these features are learnt so there's no point adding a noise anymore its just input features * clipped gates
 
+            gates = torch.clamp(self.mu, 0,1) #clipping the gates between 0 and 1
+            return input_featues * gates
 
 
 class STGModel(nn.Module):
@@ -33,3 +40,4 @@ class STGModel(nn.Module):
         h2 = torch.relu(self.hidden2(h1)) #activation vector of neurons in layer 2 from hidden1 * hidden2
         out = self.output(h2) #output which is w1*h2_1+ ... wn*h2_n + b
         return out
+
