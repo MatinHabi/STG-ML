@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import pandas as pd
+import numpy as np
 
 class StochasticGates(nn.Module):
     def __init__(self,input_dim,sigma_val=0.5):
@@ -20,7 +21,6 @@ class StochasticGates(nn.Module):
             #during training we have these learnt features, mu, for each input feature. mu has a gaussian noise which is added to it in TRAINING only.
             #The gaussian noise is multiplied by the hyperparmeter sigma and it's job to make the model re-evaluate some of the input features it may have ruled out DURING TRAINING ONLY.
             #during testing these features are learnt so there's no point adding a noise anymore its just input features * clipped gates
-
             gates = torch.clamp(self.mu, 0,1) #clipping the gates between 0 and 1
             return input_featues * gates
 
@@ -40,4 +40,27 @@ class STGModel(nn.Module):
         h2 = torch.relu(self.hidden2(h1)) #activation vector of neurons in layer 2 from hidden1 * hidden2
         out = self.output(h2) #output which is w1*h2_1+ ... wn*h2_n + b
         return out
+
+X = pd.read_csv('markers.csv')
+Y = pd.read_csv('yield.csv')
+TRAIN, VALID, TEST = 0.6, 0.2, 0.2
+SEED = 42
+
+n = len(X)
+
+shuffled_rows = np.random.default_rng(SEED).permutation(n)
+
+train_last_row = int(TRAIN*n)
+valid_last_row = train_last_row + int(VALID*n)
+
+train_rows = shuffled_rows[:train_last_row]
+valid_rows = shuffled_rows[train_last_row:valid_last_row]
+test_rows = shuffled_rows[valid_last_row:]
+
+X_train, X_valid, X_test = X.iloc[train_rows], X.iloc[valid_rows], X.iloc[test_rows]
+Y_train, Y_valid, Y_test = Y.iloc[train_rows], Y.iloc[valid_rows], Y.iloc[test_rows]
+
+# Sanity check : if you wanted it without shuffiling
+#X_train, X_valid, X_test = X.iloc[:train_last_row], X.iloc[train_last_row : valid_last_row], X.iloc[valid_last_row:]
+#Y_train, Y_valid, Y_test = Y.iloc[:train_last_row], Y.iloc[train_last_row : valid_last_row], Y.iloc[valid_last_row:]
 
