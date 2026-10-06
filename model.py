@@ -43,6 +43,7 @@ class STGModel(nn.Module):
 
 X = pd.read_csv('markers.csv')
 Y = pd.read_csv('yield.csv')
+Y = Y["Adj.Grain.Yield"] #only keep the yeild column
 TRAIN, VALID, TEST = 0.6, 0.2, 0.2
 SEED = 42
 
@@ -64,3 +65,7 @@ Y_train, Y_valid, Y_test = Y.iloc[train_rows], Y.iloc[valid_rows], Y.iloc[test_r
 #X_train, X_valid, X_test = X.iloc[:train_last_row], X.iloc[train_last_row : valid_last_row], X.iloc[valid_last_row:]
 #Y_train, Y_valid, Y_test = Y.iloc[:train_last_row], Y.iloc[train_last_row : valid_last_row], Y.iloc[valid_last_row:]
 
+mean = Y_train.mean()
+std = Y_train.std()
+
+Y_train, Y_valid, Y_test = (Y_train - mean)/std ,(Y_valid - mean)/std, (Y_test - mean)/std
