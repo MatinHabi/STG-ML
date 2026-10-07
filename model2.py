@@ -12,7 +12,7 @@ class StochasticGates(nn.Module):
 
     def forward(self, input_data):
         if self.training:
-            epsilon = torch.randn_like(input_data)
+            epsilon = torch.randn_like(self.mu) #
             gates = torch.clamp((self.mu + (epsilon * self.sigma)), 0, 1) 
         else:
             gates = torch.clamp(self.mu,0,1) #
@@ -31,7 +31,7 @@ class STGModel(nn.Module):
     def forward(self, input_data):
         gates = self.gate(input_data)
         h1 = torch.relu(self.hidden1(gates))#
-        h2 = torch.reluLU(self.hidden2(h1)) #
+        h2 = torch.relu(self.hidden2(h1)) #
         out = self.output(h2)
         return out
 
@@ -68,8 +68,8 @@ model = STGModel(X_train.shape[1], 256, 128, 1).to(device)
 
 #loss = MAE + L1 + regularisation
 def loss_fn(pred, label):
-    mae = torch.mean(torch.abs(label - pred))
-    
+    mae = torch.mean(torch.abs(label.unsqueeze(1) - pred)) #becuae label is a list like [1,2,3] and pred is like [[1],[2],[3]]
+                                                           #with .unsqueeze(1) label = [[1],[2],[3]] SAME AS pred = [[1],[2],[3]]
     l1 = L1_LAMBDA * (
         torch.sum(torch.abs(model.hidden1.weight))+
         torch.sum(torch.abs(model.hidden2.weight))+
