@@ -41,7 +41,7 @@ Y = pd.read_csv('yield.csv')
 Y = Y["Adj.Grain.Yield"]
 TRAIN, VALID, TEST = 0.6, 0.2, 0.2
 L1_LAMBDA = 0
-STG_LAMBDA = 0
+STG_LAMBDA = 0.001
 ADAM_LR = 0.001
 SEED = 42
 
@@ -93,7 +93,7 @@ def trainModel(X_train, Y_train, device, model, loss_fn, optimiser):
     X_train = X_train.to(device)
     Y_train = Y_train.to(device)
     dataloader = DataLoader(TensorDataset(X_train,Y_train),32,shuffle=True)
-    for _ in range(EPOCH):
+    for e in range(EPOCH):
         running_loss = 0.0
         for x_t, y_t in dataloader:
             pred = model(x_t)
@@ -103,4 +103,16 @@ def trainModel(X_train, Y_train, device, model, loss_fn, optimiser):
             optimiser.step()
             running_loss += loss.item()
 
+        print(f"epoch: {e}  ||  loss: {running_loss}")
 
+
+
+
+def validModel():
+    
+
+
+
+
+def testModel():
+    
