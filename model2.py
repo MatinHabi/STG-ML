@@ -7,7 +7,7 @@ import numpy as np
 class StochasticGates(nn.Module):
     def __init__(self, input_data, sigma_val = 0.5):
         super().__init__()
-        self.mu = nn.Parameter(torch.full(input_data,),0.5)
+        self.mu = nn.Parameter(torch.full((input_data,), 0.5))
         self.sigma = sigma_val
 
     def forward(self, input_data):
@@ -15,7 +15,9 @@ class StochasticGates(nn.Module):
             epsilon = torch.randn_like(input_data)
             gates = torch.clamp((self.mu + (epsilon * self.sigma)), 0, 1)
         else:
-            return input_data * gates
+            gates = torch.clamp(self.mu,0,1)
+        
+        return input_data * gates
 
 
 class STGModel(nn.Module):
@@ -37,6 +39,8 @@ X = pd.read_csv('markers.csv')
 Y = pd.read_csv('yield.csv')
 Y = Y["Adj.Grain.Yield"]
 TRAIN, VALID, TEST = 0.6, 0.2, 0.2
+L1_LAMBDA = 0
+STG_LAMBDA = 0
 SEED = 42
 
 n = len(X)
@@ -62,3 +66,15 @@ cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
 model = STGModel(X_train.shape[1], 256, 128, 1).to(device)
 
+#loss = MAE + L1 + regularisation
+def loss_fn(pred, label):
+    mae = torch.mean(torch.abs(label - pred))
+    
+    l1 = L1_LAMBDA * (
+        torch.sum(torch.abs(model.hidden1.weight))+
+        torch.sum(torch.abs(model.hidden2.weight))+
+        torch.sum(torch.abs(model.output.weight))
+    )
+    reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
+
+    return mae + l1 + reg
