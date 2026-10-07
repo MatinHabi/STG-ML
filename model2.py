@@ -7,15 +7,15 @@ import numpy as np
 class StochasticGates(nn.Module):
     def __init__(self, input_data, sigma_val = 0.5):
         super().__init__()
-        self.mu = nn.Parameter(torch.full((input_data,), 0.5))
+        self.mu = nn.Parameter(torch.full((input_data,), 0.5)) #
         self.sigma = sigma_val
 
     def forward(self, input_data):
         if self.training:
             epsilon = torch.randn_like(input_data)
-            gates = torch.clamp((self.mu + (epsilon * self.sigma)), 0, 1)
+            gates = torch.clamp((self.mu + (epsilon * self.sigma)), 0, 1) 
         else:
-            gates = torch.clamp(self.mu,0,1)
+            gates = torch.clamp(self.mu,0,1) #
         
         return input_data * gates
 
@@ -24,14 +24,14 @@ class STGModel(nn.Module):
     def __init__(self, input_dim, hidden_dim, hidden_dim2, output_dim):
         super().__init__()
         self.gate = StochasticGates(input_dim)
-        self.hidden1 = nn.Linear(input_dim, hidden_dim)
+        self.hidden1 = nn.Linear(input_dim, hidden_dim) #
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim2)
-        self.output = nn.Linear(hidden_dim2, output_dim)
+        self.output = nn.Linear(hidden_dim2, output_dim) #
 
     def forward(self, input_data):
         gates = self.gate(input_data)
-        h1 = nn.ReLU(self.hidden1(gates))
-        h2 = nn.ReLU(self.hidden2(h1))
+        h1 = torch.relu(self.hidden1(gates))#
+        h2 = torch.reluLU(self.hidden2(h1)) #
         out = self.output(h2)
         return out
 
