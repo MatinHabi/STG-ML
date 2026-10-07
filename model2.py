@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import pandas as pd
 import numpy as np
+from torch.utils.data import TensorDataset, DataLoader
 
 
 class StochasticGates(nn.Module):
@@ -41,6 +42,7 @@ Y = Y["Adj.Grain.Yield"]
 TRAIN, VALID, TEST = 0.6, 0.2, 0.2
 L1_LAMBDA = 0
 STG_LAMBDA = 0
+ADAM_LR = 0.001
 SEED = 42
 
 n = len(X)
@@ -62,6 +64,9 @@ std = Y_train.std()
 
 Y_train, Y_valid, Y_test = (Y_train - mean)/std ,(Y_valid - mean)/std, (Y_test - mean)/std
 
+X_train, X_valid, X_test = torch.tensor(X_train.values, dtype=torch.float32), torch.tensor(X_valid.values, dtype=torch.float32), torch.tensor(X_test.values, dtype=torch.float32)
+Y_train, Y_valid, Y_test = torch.tensor(Y_train.values, dtype= torch.float32), torch.tensor(Y_valid.values, dtype= torch.float32), torch.tensor(Y_test.values, dtype= torch.float32)
+
 cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
 model = STGModel(X_train.shape[1], 256, 128, 1).to(device)
@@ -79,5 +84,23 @@ def loss_fn(pred, label):
 
     return mae + l1 + reg
 
-optimiser = torch.optim.Adam(model.parameters(), lr = 0.001)
+optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
+
+EPOCH = 1000
+
+def trainModel(X_train, Y_train, device, model, loss_fn, optimiser):
+    model.train()
+    X_train = X_train.to(device)
+    Y_train = Y_train.to(device)
+    dataloader = DataLoader(TensorDataset(X_train,Y_train),32,shuffle=True)
+    for _ in range(EPOCH):
+        running_loss = 0.0
+        for x_t, y_t in dataloader:
+            pred = model(x_t)
+            loss = loss_fn(pred,y_t)
+            optimiser.zero_grad()
+            loss.backward()
+            optimiser.step()
+            running_loss += loss.item()
+
 
