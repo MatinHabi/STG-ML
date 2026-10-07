@@ -107,9 +107,7 @@ def trainModel(X_train, Y_train, device, model):
 
         print(f"epoch: {e} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
 
-        
-
-
+       
 
 def validModel(X_valid,Y_valid,device,model):
     model.eval()
@@ -130,6 +128,7 @@ def validModel(X_valid,Y_valid,device,model):
 
 
 def testModel(X_test, Y_test, model, device):
+    model.eval()
     X_test = X_test.to(device)
     Y_test = Y_test.to(device)
     dataloader = DataLoader(TensorDataset(X_test, Y_test), 32, shuffle = True)
@@ -143,3 +142,6 @@ def testModel(X_test, Y_test, model, device):
             open_gates = (model.gate.mu > 0).sum().item()
 
     print(f"average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+
+
+trainModel(X_train, Y_train, device, model)
