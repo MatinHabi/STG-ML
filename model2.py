@@ -88,31 +88,58 @@ optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
 
 EPOCH = 1000
 
-def trainModel(X_train, Y_train, device, model, loss_fn, optimiser):
+def trainModel(X_train, Y_train, device, model):
     model.train()
     X_train = X_train.to(device)
     Y_train = Y_train.to(device)
     dataloader = DataLoader(TensorDataset(X_train,Y_train),32,shuffle=True)
     for e in range(EPOCH):
         running_loss = 0.0
+        open_gates = 0.0
         for x_t, y_t in dataloader:
             pred = model(x_t)
-            loss = loss_fn(pred,y_t)
+            loss = loss_fn(pred, y_t)
             optimiser.zero_grad()
             loss.backward()
             optimiser.step()
             running_loss += loss.item()
+            open_gates += (model.gate.mu > 0).sum().item()
 
-        print(f"epoch: {e}  ||  loss: {running_loss}")
+        print(f"epoch: {e} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
 
-
-
-
-def validModel():
-    
+        
 
 
 
+def validModel(X_valid,Y_valid,device,model):
+    model.eval()
+    X_valid = X_valid.to(device)
+    Y_valid = Y_valid.to(device)
+    dataloader = DataLoader(TensorDataset(X_valid, Y_valid), 32, shuffle=True)
+    running_loss = 0.0
+    open_gates = 0.0
+    with torch.no_grad():
+        for x_t, y_t in dataloader:
+            pred = model(x_t)
+            loss = loss_fn(pred,y_t)
+            running_loss += loss.item()
+            open_gates = (model.gate.mu > 0).sum().item()
 
-def testModel():
-    
+    print(f"loss: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+
+
+
+def testModel(X_test, Y_test, model, device):
+    X_test = X_test.to(device)
+    Y_test = Y_test.to(device)
+    dataloader = DataLoader(TensorDataset(X_test, Y_test), 32, shuffle = True)
+    running_loss = 0.0
+    open_gates = 0.0
+    with torch.no_grad() :
+        for x_t , y_t in dataloader:
+            pred = model(x_t)
+            loss = loss_fn(pred, y_t)
+            running_loss += loss.item()
+            open_gates = (model.gate.mu > 0).sum().item()
+
+    print(f"average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
