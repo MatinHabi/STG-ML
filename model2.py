@@ -78,3 +78,6 @@ def loss_fn(pred, label):
     reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
 
     return mae + l1 + reg
+
+optimiser = torch.optim.Adam(model.parameters(), lr = 0.001)
+
