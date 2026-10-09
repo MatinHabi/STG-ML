@@ -1,7 +1,5 @@
 import torch 
 import torch.nn as nn
-import pandas as pd
-import numpy as np
 from torch.utils.data import TensorDataset, DataLoader
 
 
@@ -13,18 +11,18 @@ class StochasticGates(nn.Module):
 
     def forward(self, input_data):
         if self.training:
-            epsilon = torch.randn_like(self.mu) #
+            epsilon = torch.randn_like(self.mu) # Take gaussian noise
             gates = torch.clamp((self.mu + (epsilon * self.sigma)), 0, 1) 
         else:
-            gates = torch.clamp(self.mu,0,1) #
+            gates = torch.clamp(self.mu,0,1) #clip between 0 & 1
         
         return input_data * gates
 
 
 class STGModel(nn.Module):
-    def __init__(self, input_dim, hidden_dim, hidden_dim2, output_dim):
+    def __init__(self, input_dim, hidden_dim, hidden_dim2, output_dim, sigma_val):
         super().__init__()
-        self.gate = StochasticGates(input_dim)
+        self.gate = StochasticGates(input_dim, sigma_val)
         self.hidden1 = nn.Linear(input_dim, hidden_dim) #
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim2)
         self.output = nn.Linear(hidden_dim2, output_dim) #
@@ -39,8 +37,10 @@ class STGModel(nn.Module):
 d = torch.load("data.pt")
 X,Y = d["X"] , d["Y"]
 L1_LAMBDA = 0
-STG_LAMBDA = 0
+STG_LAMBDA = 1e-5
 ADAM_LR = 0.001
+SIGMA = 0.9
+RUN_SEED = 2
 SEED = 42
 
 X_train, X_valid, X_test = d["X_train"], d["X_valid"], d["X_test"]
@@ -48,7 +48,8 @@ Y_train, Y_valid, Y_test = d["Y_train"], d["Y_valid"], d["Y_test"]
 
 cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
-model = STGModel(X_train.shape[1], 256, 128, 1).to(device)
+torch.manual_seed(RUN_SEED)
+model = STGModel(X_train.shape[1], 256, 128, 1, SIGMA).to(device)
 
 #loss = MAE + L1 + regularisation
 def loss_fn(pred, label):
@@ -60,7 +61,8 @@ def loss_fn(pred, label):
         torch.sum(torch.abs(model.output.weight))
     )
     reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
-
+    #print(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
+    #print(torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma))).item())
     return mae + l1 + reg
 
 optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
@@ -103,11 +105,12 @@ def validCycle(X_valid,Y_valid,device,model, epoch):
 
 
 
-def testCycle(X_test, Y_test, model, device, epoch):
+def testCycle(X_test, Y_test, model, device):
     model.eval()
     X_test = X_test.to(device)
     Y_test = Y_test.to(device)
     dataloader = DataLoader(TensorDataset(X_test, Y_test), 32, shuffle = True)
+    #print(len(dataloader))
     running_loss = 0.0
     open_gates = 0.0
     with torch.no_grad() :
@@ -117,6 +120,6 @@ def testCycle(X_test, Y_test, model, device, epoch):
             running_loss += loss.item()
             open_gates = (model.gate.mu > 0).sum().item()
 
-    print(f"epoch: {epoch} || average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+    print(f"average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
 
 

@@ -13,11 +13,12 @@ class StochasticGates(nn.Module):
     def forward(self, input_data):
         if self.training:
             #epsilon = sigma * N(0,1)
-            epsilon = torch.randn_like(input_data) * self.sigma
+            epsilon = torch.randn_like(self.mu) * self.sigma
             gate = torch.clamp(epsilon,0,1)
-            gate += input_data
+            gate *= input_data
         else:
             gate = torch.clamp(self.mu, 0,1)
+            gate *= input_data
         
         return gate
 
