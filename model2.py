@@ -85,7 +85,6 @@ def loss_fn(pred, label):
 
 optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
 
-EPOCH = 1000
 
 def trainCycle(X_train, Y_train, device, model, epoch):
     model.train()
