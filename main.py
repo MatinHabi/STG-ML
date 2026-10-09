@@ -15,12 +15,16 @@ def train():
                 m.X_valid,m.Y_valid,
                 m.device,m.model,e
             )
+    else:
+        print("train - data.pt does not exist!\n")
 
 def test():
     if Path("data.pt").exists():
         m.testCycle(
             m.X_test, m.Y_test,
             m.device, m.model)
+    else:
+        print("test - data.pt does not exist!\n")
 
 
 def main():
