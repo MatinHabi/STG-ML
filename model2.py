@@ -39,7 +39,7 @@ X,Y = d["X"] , d["Y"]
 L1_LAMBDA = 0
 STG_LAMBDA = 1e-5
 ADAM_LR = 0.001
-SIGMA = 0.9
+SIGMA = 0.5
 RUN_SEED = 2
 SEED = 42
 
@@ -60,13 +60,15 @@ def loss_fn(pred, label):
         torch.sum(torch.abs(model.hidden2.weight))+
         torch.sum(torch.abs(model.output.weight))
     )
-    reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
+    reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu)))
     #print(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
     #print(torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma))).item())
     return mae + l1 + reg
 
 optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
 
+def MAEPERCENT(pred,actual):
+    return torch.mean(actual-pred)*100
 
 def trainCycle(X_train, Y_train, device, model, epoch):
     model.train()
@@ -85,6 +87,7 @@ def trainCycle(X_train, Y_train, device, model, epoch):
         open_gates += (model.gate.mu > 0).sum().item()
 
     print(f"epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
+
 
 
 def validCycle(X_valid,Y_valid,device,model, epoch):
