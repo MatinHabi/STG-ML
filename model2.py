@@ -60,7 +60,7 @@ def loss_fn(pred, label):
         torch.sum(torch.abs(model.hidden2.weight))+
         torch.sum(torch.abs(model.output.weight))
     )
-    reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu)))
+    reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu/model.gate.sigma)))
     #print(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
     #print(torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma))).item())
     return mae + l1 + reg
