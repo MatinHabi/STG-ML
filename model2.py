@@ -36,12 +36,11 @@ class STGModel(nn.Module):
         out = self.output(h2)
         return out
 
-X = pd.read_csv('markers.csv')
-Y = pd.read_csv('yield.csv')
-Y = Y["Adj.Grain.Yield"]
+d = torch.load("data.pt")
+X,Y = d["X"] , d["Y"]
 TRAIN, VALID, TEST = 0.6, 0.2, 0.2
 L1_LAMBDA = 0
-STG_LAMBDA = 0.001
+STG_LAMBDA = 0
 ADAM_LR = 0.001
 SEED = 42
 
@@ -88,28 +87,26 @@ optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
 
 EPOCH = 1000
 
-def trainModel(X_train, Y_train, device, model):
+def trainCycle(X_train, Y_train, device, model, epoch):
     model.train()
     X_train = X_train.to(device)
     Y_train = Y_train.to(device)
     dataloader = DataLoader(TensorDataset(X_train,Y_train),32,shuffle=True)
-    for e in range(EPOCH):
-        running_loss = 0.0
-        open_gates = 0.0
-        for x_t, y_t in dataloader:
-            pred = model(x_t)
-            loss = loss_fn(pred, y_t)
-            optimiser.zero_grad()
-            loss.backward()
-            optimiser.step()
-            running_loss += loss.item()
-            open_gates += (model.gate.mu > 0).sum().item()
+    running_loss = 0.0
+    open_gates = 0.0
+    for x_t, y_t in dataloader:
+        pred = model(x_t)
+        loss = loss_fn(pred, y_t)
+        optimiser.zero_grad()
+        loss.backward()
+        optimiser.step()
+        running_loss += loss.item()
+        open_gates += (model.gate.mu > 0).sum().item()
 
-        print(f"epoch: {e} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
+    print(f"epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
 
-       
 
-def validModel(X_valid,Y_valid,device,model):
+def validCycle(X_valid,Y_valid,device,model, epoch):
     model.eval()
     X_valid = X_valid.to(device)
     Y_valid = Y_valid.to(device)
@@ -123,11 +120,11 @@ def validModel(X_valid,Y_valid,device,model):
             running_loss += loss.item()
             open_gates = (model.gate.mu > 0).sum().item()
 
-    print(f"loss: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+    print(f"epoch: {epoch} || loss: {running_loss/len(dataloader)} || open_gates: {open_gates}")
 
 
 
-def testModel(X_test, Y_test, model, device):
+def testCycle(X_test, Y_test, model, device, epoch):
     model.eval()
     X_test = X_test.to(device)
     Y_test = Y_test.to(device)
@@ -141,7 +138,6 @@ def testModel(X_test, Y_test, model, device):
             running_loss += loss.item()
             open_gates = (model.gate.mu > 0).sum().item()
 
-    print(f"average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+    print(f"epoch: {epoch} || average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
 
 
-trainModel(X_train, Y_train, device, model)
