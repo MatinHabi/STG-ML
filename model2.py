@@ -23,14 +23,14 @@ class STGModel(nn.Module):
     def __init__(self, input_dim, hidden_dim, hidden_dim2, output_dim, sigma_val):
         super().__init__()
         self.gate = StochasticGates(input_dim, sigma_val)
-        self.hidden1 = nn.Linear(input_dim, hidden_dim) #
+        self.hidden1 = nn.Linear(input_dim, hidden_dim)
         self.hidden2 = nn.Linear(hidden_dim, hidden_dim2)
-        self.output = nn.Linear(hidden_dim2, output_dim) #
+        self.output = nn.Linear(hidden_dim2, output_dim)
 
     def forward(self, input_data):
         gates = self.gate(input_data)
-        h1 = torch.relu(self.hidden1(gates))#
-        h2 = torch.relu(self.hidden2(h1)) #
+        h1 = torch.relu(self.hidden1(gates))
+        h2 = torch.relu(self.hidden2(h1))
         out = self.output(h2)
         return out
 
@@ -61,8 +61,6 @@ def loss_fn(pred, label):
         torch.sum(torch.abs(model.output.weight))
     )
     reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu/model.gate.sigma)))
-    #print(torch.special.ndtr((model.gate.mu / model.gate.sigma)))
-    #print(torch.sum(torch.special.ndtr((model.gate.mu / model.gate.sigma))).item())
     return mae + l1 + reg
 
 optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)

@@ -2,7 +2,7 @@ import model2 as m
 from pathlib import Path
 import torch
 
-EPOCH = 300
+EPOCH = 1300
 
 def train():
     if Path("data.pt").exists():
