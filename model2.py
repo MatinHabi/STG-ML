@@ -1,6 +1,7 @@
 import torch 
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
+import argparse
 
 
 class StochasticGates(nn.Module):
@@ -34,13 +35,22 @@ class STGModel(nn.Module):
         out = self.output(h2)
         return out
 
-d = torch.load("data.pt")
+d = torch.load("data_low_corr.pt")
 X,Y = d["X"] , d["Y"]
-L1_LAMBDA = 0
-STG_LAMBDA = 1e-5
-ADAM_LR = 0.001
-SIGMA = 0.5
-RUN_SEED = 2
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--l1_lambda", type=float, default=0)
+parser.add_argument("--stg_lambda", type=float, default=1e-5)
+parser.add_argument("--lr", type=float, default = 0.001)
+parser.add_argument("--sigma", type=float, default = 0.5)
+parser.add_argument("--seed", type=int, default=42)
+args = parser.parse_args()
+
+L1_LAMBDA = args.l1_lambda
+STG_LAMBDA = args.stg_lambda
+ADAM_LR = args.lr
+SIGMA = args.sigma
+RUN_SEED = args.seed
 SEED = 42
 
 X_train, X_valid, X_test = d["X_train"], d["X_valid"], d["X_test"]

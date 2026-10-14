@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/matin/STG-ML/main.py", line 1, in <module>
+    import model2 as m
+  File "/home/matin/STG-ML/model2.py", line 45, in <module>
+    parser.add_argument("--sigma", type=float, defualt = 0.5)
+  File "/usr/lib/python3.12/argparse.py", line 1489, in add_argument
+    action = action_class(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _StoreAction.__init__() got an unexpected keyword argument 'defualt'

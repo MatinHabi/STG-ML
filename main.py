@@ -16,7 +16,8 @@ def train():
                 m.X_valid,m.Y_valid,
                 m.device,m.model,e
             )
-        torch.save(m.model.gate.mu.detach().cpu(), f"mu_runs/mu_{m.RUN_SEED}.pt")
+        run_name = f"seed{m.RUN_SEED}_stg{m.STG_LAMBDA}_l1{m.L1_LAMBDA}_lr{m.ADAM_LR}_sig{m.SIGMA}"
+        torch.save(m.model.gate.mu.detach().cpu(), f"mu_runs/mu_{run_name}.pt")
     else:
         print("train - data.pt does not exist!\n")
 
