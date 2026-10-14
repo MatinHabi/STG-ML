@@ -35,7 +35,7 @@ class STGModel(nn.Module):
         out = self.output(h2)
         return out
 
-d = torch.load("data_low_corr.pt")
+d = torch.load("data_low_corr2.pt")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--l1_lambda", type=float, default=0)
@@ -50,7 +50,6 @@ STG_LAMBDA = args.stg_lambda
 ADAM_LR = args.lr
 SIGMA = args.sigma
 RUN_SEED = args.seed
-SEED = 42
 
 print(STG_LAMBDA)
 

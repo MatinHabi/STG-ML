@@ -27,7 +27,7 @@ corr.fill_diagonal_(0)
 score = corr.abs().sum(dim=1) / (p - 1)
 
 # keep the least-correlated 10%
-thr = torch.quantile(score, 0.10)
+thr = torch.quantile(score, 0.25)
 selected = idx[score <= thr]
 
 X_train_sub = X_train[:, selected]
@@ -42,4 +42,4 @@ torch.save({
     "selected": selected,   # original column indices, for tracing markers back
     "mean": y_mu,
     "std": y_std,
-}, "data_low_corr.pt")
+}, "data_low_corr2.pt")
