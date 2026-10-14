@@ -67,8 +67,9 @@ model = STGModel(X_train.shape[1], 256, 128, 1, SIGMA).to(device)
 
 #loss = MAE + L1 + regularisation
 def loss_fn(pred, label):
-    label = label * y_std + y_mean
-    pred = pred * x_std + x_mean
+    label_unreg = label * y_std + y_mean
+    pred_unreg = pred * y_std + y_mean
+    mae2 = torch.mean(torch.abs(label_unreg.unsqueeze(1) - pred_unreg))
     mae = torch.mean(torch.abs(label.unsqueeze(1) - pred)) #becuae label is a list like [1,2,3] and pred is like [[1],[2],[3]]
                                                            #with .unsqueeze(1) label = [[1],[2],[3]] SAME AS pred = [[1],[2],[3]]
     l1 = L1_LAMBDA * (
@@ -76,8 +77,9 @@ def loss_fn(pred, label):
         torch.sum(torch.abs(model.hidden2.weight))+
         torch.sum(torch.abs(model.output.weight))
     )
+
     reg = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu/model.gate.sigma)))
-    return mae + l1 + reg
+    return [mae + l1 + reg, mae2 + l1+ reg]
 
 optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
 
@@ -95,12 +97,12 @@ def trainCycle(X_train, Y_train, device, model, epoch):
         pred = model(x_t)
         loss = loss_fn(pred, y_t)
         optimiser.zero_grad()
-        loss.backward()
+        loss[0].backward()
         optimiser.step()
-        running_loss += loss.item()
+        running_loss += loss[0].item()
         open_gates += (model.gate.mu > 0).sum().item()
 
-    print(f"epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
+    print(f"\nepoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
 
 
 
@@ -115,10 +117,10 @@ def validCycle(X_valid,Y_valid,device,model, epoch):
         for x_t, y_t in dataloader:
             pred = model(x_t)
             loss = loss_fn(pred,y_t)
-            running_loss += loss.item()
+            running_loss += loss[0].item()
             open_gates = (model.gate.mu > 0).sum().item()
 
-    print(f"epoch: {epoch} || loss: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+    print(f"epoch: {epoch} || loss_reg: {running_loss/len(dataloader)} || loss: {loss[1].item()} || open_gates: {open_gates}")
 
 
 
