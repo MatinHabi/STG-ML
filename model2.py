@@ -36,7 +36,6 @@ class STGModel(nn.Module):
         return out
 
 d = torch.load("data_low_corr.pt")
-X,Y = d["X"] , d["Y"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--l1_lambda", type=float, default=0)
@@ -53,9 +52,15 @@ SIGMA = args.sigma
 RUN_SEED = args.seed
 SEED = 42
 
+print(STG_LAMBDA)
+
 X_train, X_valid, X_test = d["X_train"], d["X_valid"], d["X_test"]
 Y_train, Y_valid, Y_test = d["Y_train"], d["Y_valid"], d["Y_test"]
 
+x_mean, x_std = X_train.mean(), X_train.std()
+y_mean, y_std = d["mean"], d["std"]
+
+print(f'x_mean: {x_mean} , x_std: {x_std}\ny_mean: {y_mean} , y_std: {y_std}')
 cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
 torch.manual_seed(RUN_SEED)
@@ -63,6 +68,8 @@ model = STGModel(X_train.shape[1], 256, 128, 1, SIGMA).to(device)
 
 #loss = MAE + L1 + regularisation
 def loss_fn(pred, label):
+    label = label * y_std + y_mean
+    pred = pred * x_std + x_mean
     mae = torch.mean(torch.abs(label.unsqueeze(1) - pred)) #becuae label is a list like [1,2,3] and pred is like [[1],[2],[3]]
                                                            #with .unsqueeze(1) label = [[1],[2],[3]] SAME AS pred = [[1],[2],[3]]
     l1 = L1_LAMBDA * (
@@ -131,6 +138,6 @@ def testCycle(X_test, Y_test, model, device):
             running_loss += loss.item()
             open_gates = (model.gate.mu > 0).sum().item()
 
-    print(f"average loss per batch: {running_loss/len(dataloader)} || open_gates: {open_gates}")
+    print(f"average loss per batch: {(running_loss/len(dataloader))} || open_gates: {open_gates}")
 
 

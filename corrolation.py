@@ -26,11 +26,6 @@ p = corr.shape[0]
 corr.fill_diagonal_(0)
 score = corr.abs().sum(dim=1) / (p - 1)
 
-plt.hist(score.numpy(), bins=100)
-plt.xlabel("mean |r| with other markers")
-plt.ylabel("number of markers")
-#plt.show()
-
 # keep the least-correlated 10%
 thr = torch.quantile(score, 0.10)
 selected = idx[score <= thr]
@@ -39,8 +34,12 @@ X_train_sub = X_train[:, selected]
 X_valid_sub = X_valid[:, selected].float()
 X_test_sub = X_test[:, selected].float()
 
+y_mu, y_std = d["mean"] , d["std"]
+
 torch.save({
     "X_train": X_train_sub, "X_valid": X_valid_sub, "X_test": X_test_sub,
     "Y_train": Y_train,     "Y_valid": Y_valid,     "Y_test": Y_test,
     "selected": selected,   # original column indices, for tracing markers back
+    "mean": y_mu,
+    "std": y_std,
 }, "data_low_corr.pt")

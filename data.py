@@ -37,6 +37,8 @@ data = {
     "Y_valid":torch.tensor(Y_valid.values, dtype = torch.float32),
     "X_test":torch.tensor(X_test.values, dtype = torch.float32),
     "Y_test":torch.tensor(Y_test.values, dtype = torch.float32),
+    "mean": torch.tensor(mean, dtype=torch.float32),
+    "std": torch.tensor(std, dtype=torch.float32),
     "marker_names": list(X.columns)
 }
 
