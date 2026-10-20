@@ -60,6 +60,7 @@ x_mean, x_std = X_train.mean(), X_train.std()
 y_mean, y_std = d["mean"], d["std"]
 
 print(f'x_mean: {x_mean} , x_std: {x_std}\ny_mean: {y_mean} , y_std: {y_std}')
+
 cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
 torch.manual_seed(RUN_SEED)
@@ -69,7 +70,7 @@ model = STGModel(X_train.shape[1], 256, 128, 1, SIGMA).to(device)
 def loss_fn(pred, label):
     label_unreg = label * y_std + y_mean
     pred_unreg = pred * y_std + y_mean
-    mae2 = torch.mean(torch.abs(label_unreg.unsqueeze(1) - pred_unreg))
+    mae2 = torch.mean(torch.abs(label_unreg.unsqueeze(1) - pred_unreg)) # actual yeild mean kg per hectare
     mae = torch.mean(torch.abs(label.unsqueeze(1) - pred)) #becuae label is a list like [1,2,3] and pred is like [[1],[2],[3]]
                                                            #with .unsqueeze(1) label = [[1],[2],[3]] SAME AS pred = [[1],[2],[3]]
     l1 = L1_LAMBDA * (
@@ -102,7 +103,7 @@ def trainCycle(X_train, Y_train, device, model, epoch):
         running_loss += loss[0].item()
         open_gates += (model.gate.mu > 0).sum().item()
 
-    print(f"\nepoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
+    print(f"TRAIN: STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} || epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}")
 
 
 
@@ -120,7 +121,7 @@ def validCycle(X_valid,Y_valid,device,model, epoch):
             running_loss += loss[0].item()
             open_gates = (model.gate.mu > 0).sum().item()
 
-    print(f"epoch: {epoch} || loss_reg: {running_loss/len(dataloader)} || loss: {loss[1].item()} || open_gates: {open_gates}")
+    print(f"\nVALID: STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} || epoch: {epoch} || loss_reg: {running_loss/len(dataloader)} || loss: {loss[1].item()} || open_gates: {open_gates}")
 
 
 
