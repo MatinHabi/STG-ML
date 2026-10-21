@@ -35,7 +35,7 @@ class STGModel(nn.Module):
         out = self.output(h2)
         return out
 
-d = torch.load("data_low_corr.pt")
+d = torch.load("data_low_corr10.pt")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--l1_lambda", type=float, default=0)
