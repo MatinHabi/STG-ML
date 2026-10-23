@@ -35,15 +35,17 @@ class STGModel(nn.Module):
         out = self.output(h2)
         return out
 
-d = torch.load("data_low_corr10.pt")
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--filename", type=str, default="data.pt")
 parser.add_argument("--l1_lambda", type=float, default=0)
 parser.add_argument("--stg_lambda", type=float, default=1e-5)
 parser.add_argument("--lr", type=float, default = 0.001)
 parser.add_argument("--sigma", type=float, default = 0.5)
 parser.add_argument("--seed", type=int, default=42)
 args = parser.parse_args()
+
+FILE = args.filename
 
 L1_LAMBDA = args.l1_lambda
 STG_LAMBDA = args.stg_lambda
@@ -52,6 +54,8 @@ SIGMA = args.sigma
 RUN_SEED = args.seed
 
 print(STG_LAMBDA)
+
+d = torch.load(FILE)
 
 X_train, X_valid, X_test = d["X_train"], d["X_valid"], d["X_test"]
 Y_train, Y_valid, Y_test = d["Y_train"], d["Y_valid"], d["Y_test"]
