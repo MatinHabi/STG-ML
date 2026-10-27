@@ -142,18 +142,18 @@ def evaluate(X, Y , top_k=None):
     model.eval()
     with torch.no_grad():
         mu = model.gate.mu
-        saved = mu.clone()
+        saved = mu.clone() #copies gates
 
         if top_k is not None:
-            mu[torch.argsort(saved, descending=True)[top_k:]] = 0.0
-        gates = int((mu > 0).sum())
-        pred = model(X.to(device)).squeeze(1).cpu()
-        mu.copy_(saved)
+            mu[torch.argsort(saved, descending=True)[top_k:]] = 0.0 #sets all except top_k markers to 0.0
+        gates = int((mu > 0).sum()) #counts gates
+        pred = model(X.to(device)).squeeze(1).cpu() #predicts on CPU
+        mu.copy_(saved) #restores backup & overrights value of mu itself (the trailing '_' means in-place)
 
-    y = Y.cpu()
+    y = Y.cpu() #labels on CPU
     pred_kg, y_kg = pred * y_std + y_mu , y * y_std + y_mu
     return {
-        'r' : torch.corrcoef(torch.stack([pred, y]))[0,1].nan_to_num(0.0).item(),
+        'r' : torch.corrcoef(torch.stack([pred, y]))[0,1].nan_to_num(0.0).item(), #creates corrolation matrix to show how well predictions track the truth
         're' : (torch.abs(y_kg - pred_kg) / torch.abs(y_kg)).mean().item() * 100,
         'mse' : torch.mean((pred - y) ** 2).item(),
         'gates' : gates,
