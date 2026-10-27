@@ -7,7 +7,7 @@ import argparse
 class StochasticGates(nn.Module):
     def __init__(self, input_data, sigma_val = 0.5):
         super().__init__()
-        self.mu = nn.Parameter(torch.full((input_data,), 0.5)) #
+        self.mu = nn.Parameter(torch.full((input_data,), 0.5))
         self.sigma = sigma_val
 
     def forward(self, input_data):
