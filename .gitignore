@@ -3,3 +3,5 @@
 *.pt
 /.ipynb_checkpoints
 /mu_runs
+/*.md
+/*.jpg
