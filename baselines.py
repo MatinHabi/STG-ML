@@ -14,9 +14,9 @@ vbs = np.loadtxt("VBS-ML-Genomic-Prediction/2014_Data/354_idx.txt", dtype = int)
 K = len(vbs)
 
 Xtr, ytr = d["X_train"].numpy(), d["Y_train"].numpy()
-if not d.get("no_valid", False): #if there isn't a validation set (same as how VBS was trained & tested)
-    Xtr = np.vstack([Xtr, d["X_valid"].numpy()]) #putting validation plants rows under training plants (because validation doesnt exist)
-    ytr = np.concatenate([ytr, d["Y_valid"].numpy()]) #vstack to add rows and concatonate to add the markers to the end of the 1D array
+if not d.get("is_valid", False): #if there IS a validation set we need to merge it back with the training data as ridge doesnt need it as it uses cross-validation instead
+    Xtr = np.vstack([Xtr, d["X_valid"].numpy()]) #putting validation plants rows under training plants
+    ytr = np.concatenate([ytr, d["Y_valid"].numpy()]) #vstack to add rows and concatonate to add the yield to the end of the 1D array
 
 Xte, yte = d["X_test"].numpy(), d["Y_test"].numpy()
 
@@ -30,10 +30,10 @@ def score(cols=slice(None)): #slice(None) is the same as : so Xtr[:,slice(None)]
 
     return f"r = {np.corrcoef(pred,yte)[0,1]:.3f} || MSE = {np.mean((pred - yte) ** 2):.3f}"
 
-print(f"ridge with all {Xtr.shape[1]} markers: {score()}  (paper GBLUP/LMM r: 0.52 0.49 0.50 0.47)") #sanity check to see if the implimenantion of Ridge is correct - should get very similar numbers 
+print(f"ridge with all {Xtr.shape[1]} markers: {score()}  (paper GBLUP/LMM r: 0.52 0.49 0.50 0.47)") #sanity check to see if my data lines up with VBS's - should get very similar numbers 
 print(f"ridge using VBS's {K} markers: {score(vbs)}")
 print(f"ridge with {K} random markers: {score(np.random.default_rng(0).choice(Xtr.shape[1], K, replace=False))}")
 
-if mu is not None:
+if mu is not None: #mu being the STG gate file passed in (created by main.py)
     stg = torch.argsort(mu, descending=True)[:K].numpy() #getting the column for markers ordered from highest gate value to lowest and only keeps the top K 
     print(f"ridge using STG's top {K} markers: {score(stg)} || Overlap with VBS: {len(np.intersect1d(stg, vbs))}/{K}") #printing rigde's score using K markers and how many VBS of the same markers VBS also picked

@@ -7,8 +7,8 @@ import torch
 
 SPLITS = "VBS-ML-Genomic-Prediction/2014_splits"
 
-VAL_FRAC = 0 #the amount of VBS training data set aside for validation. note that VBS paper says that they did not have a validation set just 90/10 training/test split
-               # correct thing to do is set this to 0 to match VBS training testing split
+VAL_FRAC = 0.1 #the amount of VBS training data set aside for validation. note that VBS paper says that they did not have a validation set just 90/10 training/test split
+               #setting this to 0.1 uses 10% of the training data for validation so main can replace the kept model with the one that scores a higher r value every set number of epochs
 
 SEED = 42
 
@@ -47,7 +47,7 @@ for s in ["01", "02", "03", "04"]:
         "mean": torch.tensor(mean, dtype=torch.float32),
         "std": torch.tensor(std, dtype=torch.float32),
         "test_ids": torch.as_tensor(test_ids), # turning nupmy array to tensor
-        "no_valid": VAL_FRAC == 0,
+        "is_valid_set": VAL_FRAC == 0,
         "marker_names": list(X.columns),
     }, f"data_split{s}.pt")
     print(f"split {s}: training {len(train_ids)}, valid {len(valid_ids)}, test {len(test_ids)}")
