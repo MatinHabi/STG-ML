@@ -67,7 +67,7 @@ model = STGModel(X_train.shape[1], 256, 128, 1, SIGMA).to(device)
 def loss_fn(pred,label):
     label_unreg = label * y_std + y_mu
     pred_unreg = pred * y_std + y_mu
-    mae_unreg = torch.mean(torch.abs(label_unreg.unqueeze(1) - pred_unreg))
+    mae_unreg = torch.mean(torch.abs(label_unreg.unsqueeze(1) - pred_unreg))
     mae = torch.mean(torch.abs(label.unsqueeze(1) - pred))
 
     l1 = L1_LAMBDA * (
@@ -76,7 +76,7 @@ def loss_fn(pred,label):
         torch.sum(torch.abs(model.output.weight))
     )
 
-    stg_pen = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gate.mu/model.gate.sigma)))
+    stg_pen = STG_LAMBDA * torch.sum(torch.special.ndtr((model.gates.mu/model.gates.sigma)))
     return [mae + l1 + stg_pen, mae_unreg + l1 + stg_pen] # [reg_loss , unreg_loss]
 
 optimiser = torch.optim.Adam(model.parameters(), lr = ADAM_LR)
@@ -85,34 +85,34 @@ def MAEPERCENT(pred, label):
     return torch.mean(label - pred) * 100 
 
 def training(epoch):
+    model.train()
     X = X_train.to(device)
     Y = Y_train.to(device)
-    dataloader = DataLoader(TensorDataset(X , Y), 32, shuffle = True).to(device) #Matin: remember this line
-    for e in range(epoch):
-        running_loss = 0.0
-        open_gates = 0.0
-        for x,y in dataloader:
-            pred = model(x)
-            loss = loss_fn(pred,y)
-            optimiser.zero_grad()
-            loss[1].backward()
-            optimiser.step
+    dataloader = DataLoader(TensorDataset(X , Y), 32, shuffle = True)
+    running_loss = 0.0
+    open_gates = 0.0
+    for x,y in dataloader:
+        pred = model(x)
+        loss = loss_fn(pred,y)
+        optimiser.zero_grad()
+        loss[0].backward()
+        optimiser.step()
 
-            running_loss += loss[0].item()
-            open_gates += (model.gate.mu > 0).sum().item()
+        running_loss += loss[0].item()
+        open_gates += (model.gates.mu > 0).sum().item()
 
-        print(f'TRAINING -- STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} , || epoch: {e} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}')
+    print(f'TRAIN -- STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} , || epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}')
 
 
 def validation(epoch):
     model.eval()
     X = X_valid.to(device)
     Y = Y_valid.to(device)
-    dataloader = DataLoader(TensorDataset(X,Y),32,shuffle=True).to(device)
+    dataloader = DataLoader(TensorDataset(X,Y),32,shuffle=True)
     running_loss = 0.0
     open_gates = 0.0
 
-    with torch.no_grad:
+    with torch.no_grad():
         for x,y in dataloader:
             pred = model(x)
             loss = loss_fn(pred,y)
@@ -121,27 +121,28 @@ def validation(epoch):
 
         print(f'EVAL -- STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} , || epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}')
 
-def testing(epoch):
+def testing():
+    model.eval()
     X = X_test.to(device)
     Y = Y_test.to(device)
-    dataloader = DataLoader(TensorDataset(X,Y),32,shuffle=True).to(device)
+    dataloader = DataLoader(TensorDataset(X,Y),32,shuffle=True)
     running_loss = 0.0
     open_gates = 0.0
     
-    with torch.no_grad:
+    with torch.no_grad():
         for x,y in dataloader:
             pred = model(x)
             loss = loss_fn(pred,y)
             running_loss += loss[0].item()
             open_gates += (model.gates.mu > 0 ).sum().item()
 
-        print(f'TEST -- STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} , || epoch: {epoch} || avg_batch_loss: {running_loss/len(dataloader)} || avg_open_gates: {open_gates/len(dataloader)}')
+    print(f'TEST -- STG_LAMBDA: {STG_LAMBDA} || lr: {ADAM_LR} , || avg_batch_loss: {running_loss} || avg_open_gates: {open_gates}')
 
 
 def evaluate(X, Y , top_k=None):
     model.eval()
     with torch.no_grad():
-        mu = model.gate.mu
+        mu = model.gates.mu
         saved = mu.clone() #copies gates
 
         if top_k is not None:
