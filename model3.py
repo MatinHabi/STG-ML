@@ -48,7 +48,7 @@ L1_LAMBDA = args.l1_lambda
 STG_LAMBDA = args.stg_lambda
 ADAM_LR = args.lr
 SIGMA = args.sigma
-SEED = args.seed
+RUN_SEED = args.seed
 
 print(f'stg_lambda: {STG_LAMBDA}')
 
@@ -61,7 +61,7 @@ y_mu, y_std = d['mean'], d['std']
 
 cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
-torch.manual_seed(SEED)
+torch.manual_seed(RUN_SEED)
 model = STGModel(X_train.shape[1], 256, 128, 1, SIGMA).to(device)
 
 def loss_fn(pred,label):
