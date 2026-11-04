@@ -3,7 +3,7 @@ from pathlib import Path
 import torch
 import copy
 
-EPOCH = 1500
+EPOCH = 150
 EVAL_EVERY = 10 
 MATCH_K = 354 #number of markers picked by VBS on teh 2014 data
 
