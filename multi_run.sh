@@ -5,7 +5,7 @@ mkdir -p logs
 #python main.py --stg_lambda ${lams[$i]} --lr ${lrs[$i]} --seed 2 &
 for s in 01 02 03 04; do
     for i in "${!lams[@]}"; do
-        python main.py --filename "data_split${s}.pt" --stg_lambda ${lams[$i]} --seed 2 > "logs/split${s}_stg${lams[$i]}.log" 2>&1 &
+        python main.py --filename "data_split${s}.pt" --stg_lambda ${lams[$i]} --seed 2 > "logs/split${s}_stg${lams[$i]}.txt" 2>&1 &
     done
     wait
 done
