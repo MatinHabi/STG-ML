@@ -1,0 +1,50 @@
+{
+ "01": {
+  "best": {
+   "stg_lambda": 0.001,
+   "l1_lambda": 1e-05,
+   "epochs": 4,
+   "valid_r": 0.3880123198032379,
+   "valid_re": 7.8209757804870605,
+   "gates": 17114,
+   "run": "data_split01_select_stg0.001_l11e-05_ep4_seed1"
+  },
+  "sparse": null
+ },
+ "02": {
+  "best": {
+   "stg_lambda": 0.001,
+   "l1_lambda": 1e-05,
+   "epochs": 4,
+   "valid_r": 0.4211641848087311,
+   "valid_re": 7.5410328805446625,
+   "gates": 17114,
+   "run": "data_split02_select_stg0.001_l11e-05_ep4_seed1"
+  },
+  "sparse": null
+ },
+ "03": {
+  "best": {
+   "stg_lambda": 0.0001,
+   "l1_lambda": 1e-05,
+   "epochs": 4,
+   "valid_r": 0.4017044007778168,
+   "valid_re": 7.69667774438858,
+   "gates": 17114,
+   "run": "data_split03_select_stg0.0001_l11e-05_ep4_seed1"
+  },
+  "sparse": null
+ },
+ "04": {
+  "best": {
+   "stg_lambda": 0.001,
+   "l1_lambda": 1e-05,
+   "epochs": 4,
+   "valid_r": 0.42522767186164856,
+   "valid_re": 7.456971704959869,
+   "gates": 17114,
+   "run": "data_split04_select_stg0.001_l11e-05_ep4_seed1"
+  },
+  "sparse": null
+ }
+}

@@ -1,0 +1,54 @@
+{
+ "run": "data_split04_full_fixed_stg0.001_l11e-05_ep4_seed2",
+ "config": {
+  "filename": "data_split04_full.pt",
+  "l1_lambda": 1e-05,
+  "stg_lambda": 0.001,
+  "lr": 0.0001,
+  "sigma": 0.5,
+  "seed": 2,
+  "batch_size": 512,
+  "weight_decay": 0.0005,
+  "dropout": 0.5,
+  "epochs": 4,
+  "eval_every": 2,
+  "mode": "fixed",
+  "out_dir": "results_quick",
+  "overwrite": false
+ },
+ "device": "cuda",
+ "final_open_gates": 17114,
+ "mu_path": "results_quick/mu/mu_data_split04_full_fixed_stg0.001_l11e-05_ep4_seed2.pt",
+ "minutes": 0.04,
+ "test": {
+  "r": 0.3926529884338379,
+  "re": 7.609973847866058,
+  "mse": 0.8286183476448059,
+  "gates": 17114
+ },
+ "test_peek": {
+  "r": 0.3926529884338379,
+  "re": 7.609973847866058,
+  "mse": 0.8286183476448059,
+  "gates": 17114,
+  "epoch": 4
+ },
+ "curve": [
+  {
+   "epoch": 2,
+   "train_loss": 15.268630931251927,
+   "r": 0.3725510239601135,
+   "re": 7.751603424549103,
+   "mse": 0.8499870896339417,
+   "gates": 17114
+  },
+  {
+   "epoch": 4,
+   "train_loss": 15.224983416105571,
+   "r": 0.3926529884338379,
+   "re": 7.609973847866058,
+   "mse": 0.8286183476448059,
+   "gates": 17114
+  }
+ ]
+}

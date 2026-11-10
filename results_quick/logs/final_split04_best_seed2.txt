@@ -1,0 +1,8 @@
+data_split04_full_fixed_stg0.001_l11e-05_ep4_seed2 || device: cuda || train (9338, 17114) valid (1037, 17114) test (1037, 17114)
+epoch 2/4 || lr 5.00e-05 || train_loss 15.2686 || test: r=0.373 RE=7.75% MSE=0.850 gates=17114
+epoch 4/4 || lr 0.00e+00 || train_loss 15.2250 || test: r=0.393 RE=7.61% MSE=0.829 gates=17114
+
+FINAL data_split04_full_fixed_stg0.001_l11e-05_ep4_seed2
+  final model (headline number, test never used for any choice)   test: r=0.393 RE=7.61% MSE=0.829 gates=17114
+  lowest test RE seen (epoch 4, optimistic upper bound)  test: r=0.393 RE=7.61% MSE=0.829 gates=17114
+saved results_quick/runs/data_split04_full_fixed_stg0.001_l11e-05_ep4_seed2.json

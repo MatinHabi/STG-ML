@@ -1,0 +1,8 @@
+sim_low_m20_rep1_fixed_stg0.001_l11e-05_ep4_seed1 || device: cuda || train (8405, 17114) valid (933, 17114) test (1037, 17114)
+epoch 2/4 || lr 5.00e-05 || train_loss 15.2388 || test: r=0.565 RE=6.84% MSE=0.660 gates=17114
+epoch 4/4 || lr 0.00e+00 || train_loss 15.1699 || test: r=0.606 RE=6.59% MSE=0.612 gates=17114
+
+FINAL sim_low_m20_rep1_fixed_stg0.001_l11e-05_ep4_seed1
+  final model (headline number, test never used for any choice)   test: r=0.606 RE=6.59% MSE=0.612 gates=17114
+  lowest test RE seen (epoch 4, optimistic upper bound)  test: r=0.606 RE=6.59% MSE=0.612 gates=17114
+saved results_quick/runs/sim_low_m20_rep1_fixed_stg0.001_l11e-05_ep4_seed1.json

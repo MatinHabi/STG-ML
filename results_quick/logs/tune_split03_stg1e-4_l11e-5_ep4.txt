@@ -1,0 +1,8 @@
+data_split03_select_stg0.0001_l11e-05_ep4_seed1 || device: cuda || train (8405, 17114) valid (933, 17114) test (1037, 17114)
+epoch 2/4 || lr 5.00e-05 || train_loss 2.3268 || valid: r=0.384 RE=7.82% MSE=0.834 gates=17114
+epoch 4/4 || lr 0.00e+00 || train_loss 2.2996 || valid: r=0.402 RE=7.70% MSE=0.816 gates=17114
+
+FINAL (tuning) data_split03_select_stg0.0001_l11e-05_ep4_seed1
+  final model                    valid: r=0.402 RE=7.70% MSE=0.816 gates=17114
+  best checkpoint (epoch 4)   valid: r=0.402 RE=7.70% MSE=0.816 gates=17114
+saved results_quick/runs/data_split03_select_stg0.0001_l11e-05_ep4_seed1.json
