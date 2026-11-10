@@ -1,0 +1,181 @@
+stg_lambda: 0.001
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 0 || avg_batch_loss: 13.86109788336228 || avg_open_gates: 17114.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 1 || avg_batch_loss: 10.265658244433965 || avg_open_gates: 12808.361216730038
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 2 || avg_batch_loss: 6.5859591897449565 || avg_open_gates: 1.9049429657794676
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 3 || avg_batch_loss: 4.143953591698476 || avg_open_gates: 1.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 4 || avg_batch_loss: 2.8288943151104133 || avg_open_gates: 1.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 5 || avg_batch_loss: 2.1156789893886434 || avg_open_gates: 1.5361216730038023
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 6 || avg_batch_loss: 1.707952929993546 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 7 || avg_batch_loss: 1.4746629638816922 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 8 || avg_batch_loss: 1.317055488720593 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 9 || avg_batch_loss: 1.212902419694023 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 9 || valid: r=0.215 RE=8.24% MSE=0.957 gates=2 || test: r=0.282 RE=8.59% MSE=1.036 gates=2 || test@354: r=0.282 RE=8.59% MSE=1.036 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 10 || avg_batch_loss: 1.1341062188148499 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 11 || avg_batch_loss: 1.0779003573461177 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 12 || avg_batch_loss: 1.0285092546912653 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 13 || avg_batch_loss: 0.991886157046706 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 14 || avg_batch_loss: 0.9630170892853247 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 15 || avg_batch_loss: 0.941459178018026 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 16 || avg_batch_loss: 0.9201521465533586 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 17 || avg_batch_loss: 0.9003033198331245 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 18 || avg_batch_loss: 0.8845298569012051 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 19 || avg_batch_loss: 0.8742350088326196 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 19 || valid: r=0.215 RE=8.19% MSE=0.948 gates=2 || test: r=0.283 RE=8.53% MSE=1.023 gates=2 || test@354: r=0.283 RE=8.53% MSE=1.023 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 20 || avg_batch_loss: 0.8654035631241453 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 21 || avg_batch_loss: 0.8551586660142181 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 22 || avg_batch_loss: 0.8462140081953187 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 23 || avg_batch_loss: 0.8385248209133801 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 24 || avg_batch_loss: 0.8314621770336601 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 25 || avg_batch_loss: 0.8301306119889814 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 26 || avg_batch_loss: 0.81959928781814 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 27 || avg_batch_loss: 0.8159355514403078 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 28 || avg_batch_loss: 0.8125484841858026 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 29 || avg_batch_loss: 0.807593498846424 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 29 || valid: r=0.214 RE=8.14% MSE=0.939 gates=2 || test: r=0.284 RE=8.43% MSE=1.005 gates=2 || test@354: r=0.284 RE=8.43% MSE=1.005 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 30 || avg_batch_loss: 0.8058978471012623 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 31 || avg_batch_loss: 0.7997260252332506 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 32 || avg_batch_loss: 0.7985528782293371 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 33 || avg_batch_loss: 0.7938505943737103 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 34 || avg_batch_loss: 0.7895338918319673 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 35 || avg_batch_loss: 0.7850902611991751 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 36 || avg_batch_loss: 0.7834628258367908 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 37 || avg_batch_loss: 0.7809388501562546 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 38 || avg_batch_loss: 0.779310480723363 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 39 || avg_batch_loss: 0.779750481531194 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 39 || valid: r=0.214 RE=8.15% MSE=0.940 gates=2 || test: r=0.283 RE=8.44% MSE=1.007 gates=2 || test@354: r=0.283 RE=8.44% MSE=1.007 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 40 || avg_batch_loss: 0.777806033199731 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 41 || avg_batch_loss: 0.7747459791232425 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 42 || avg_batch_loss: 0.7724647363329115 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 43 || avg_batch_loss: 0.7703613684204594 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 44 || avg_batch_loss: 0.7703486753507259 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 45 || avg_batch_loss: 0.7688971081387408 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 46 || avg_batch_loss: 0.7667300345326558 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 47 || avg_batch_loss: 0.7697449013760788 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 48 || avg_batch_loss: 0.7632432314832854 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 49 || avg_batch_loss: 0.7643503512719738 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 49 || valid: r=0.214 RE=8.17% MSE=0.940 gates=2 || test: r=0.284 RE=8.42% MSE=0.997 gates=2 || test@354: r=0.284 RE=8.42% MSE=0.997 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 50 || avg_batch_loss: 0.7615639895993948 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 51 || avg_batch_loss: 0.7626066504775798 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 52 || avg_batch_loss: 0.7644687632644132 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 53 || avg_batch_loss: 0.7599912259741881 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 54 || avg_batch_loss: 0.7574920917191886 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 55 || avg_batch_loss: 0.759607113132912 || avg_open_gates: 2.167300380228137
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 56 || avg_batch_loss: 0.7571756438610672 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 57 || avg_batch_loss: 0.7542961001849446 || avg_open_gates: 2.752851711026616
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 58 || avg_batch_loss: 0.7587330351537624 || avg_open_gates: 2.8669201520912546
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 59 || avg_batch_loss: 0.7560693367805771 || avg_open_gates: 3.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 59 || valid: r=0.213 RE=8.14% MSE=0.939 gates=3 || test: r=0.284 RE=8.42% MSE=1.003 gates=3 || test@354: r=0.284 RE=8.42% MSE=1.003 gates=3
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 60 || avg_batch_loss: 0.7551684167675192 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 61 || avg_batch_loss: 0.7568206497018328 || avg_open_gates: 2.456273764258555
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 62 || avg_batch_loss: 0.7546790600276265 || avg_open_gates: 2.03041825095057
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 63 || avg_batch_loss: 0.7553841724368556 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 64 || avg_batch_loss: 0.7548256015596281 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 65 || avg_batch_loss: 0.7513662663929362 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 66 || avg_batch_loss: 0.7466921244284046 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 67 || avg_batch_loss: 0.7481963571033551 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 68 || avg_batch_loss: 0.7522138227981306 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 69 || avg_batch_loss: 0.7491614832171016 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 69 || valid: r=0.213 RE=8.19% MSE=0.942 gates=2 || test: r=0.285 RE=8.38% MSE=0.989 gates=2 || test@354: r=0.285 RE=8.38% MSE=0.989 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 70 || avg_batch_loss: 0.7457772775521296 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 71 || avg_batch_loss: 0.7477966530014807 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 72 || avg_batch_loss: 0.7451924212531899 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 73 || avg_batch_loss: 0.7470373668824765 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 74 || avg_batch_loss: 0.7478306198301424 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 75 || avg_batch_loss: 0.748227804105998 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 76 || avg_batch_loss: 0.7454791581222766 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 77 || avg_batch_loss: 0.7475189265189516 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 78 || avg_batch_loss: 0.7474317625448278 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 79 || avg_batch_loss: 0.745881446867388 || avg_open_gates: 2.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 79 || valid: r=0.211 RE=8.15% MSE=0.939 gates=2 || test: r=0.280 RE=8.38% MSE=0.996 gates=2 || test@354: r=0.280 RE=8.38% MSE=0.996 gates=2
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 80 || avg_batch_loss: 0.7468846174020731 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 81 || avg_batch_loss: 0.744900401667497 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 82 || avg_batch_loss: 0.744145226002646 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 83 || avg_batch_loss: 0.7437967320358798 || avg_open_gates: 2.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 84 || avg_batch_loss: 0.74067247231197 || avg_open_gates: 2.806083650190114
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 85 || avg_batch_loss: 0.7420661908365475 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 86 || avg_batch_loss: 0.7417833716697113 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 87 || avg_batch_loss: 0.7393638706932503 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 88 || avg_batch_loss: 0.7410689080169446 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 89 || avg_batch_loss: 0.7444320200967245 || avg_open_gates: 3.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 89 || valid: r=0.231 RE=8.20% MSE=0.939 gates=3 || test: r=0.294 RE=8.40% MSE=0.989 gates=3 || test@354: r=0.294 RE=8.40% MSE=0.989 gates=3
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 90 || avg_batch_loss: 0.7417434706660732 || avg_open_gates: 3.828897338403042
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 91 || avg_batch_loss: 0.7405159927819618 || avg_open_gates: 4.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 92 || avg_batch_loss: 0.7409350426704712 || avg_open_gates: 3.3041825095057034
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 93 || avg_batch_loss: 0.7381844699609416 || avg_open_gates: 3.0950570342205324
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 94 || avg_batch_loss: 0.7394230186712606 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 95 || avg_batch_loss: 0.7386420357816573 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 96 || avg_batch_loss: 0.7377720291623597 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 97 || avg_batch_loss: 0.7401703837479928 || avg_open_gates: 3.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 98 || avg_batch_loss: 0.7398550623723309 || avg_open_gates: 3.026615969581749
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 99 || avg_batch_loss: 0.7389904806822425 || avg_open_gates: 4.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 99 || valid: r=0.244 RE=8.12% MSE=0.925 gates=4 || test: r=0.296 RE=8.35% MSE=0.985 gates=4 || test@354: r=0.296 RE=8.35% MSE=0.985 gates=4
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 100 || avg_batch_loss: 0.7369492759949354 || avg_open_gates: 4.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 101 || avg_batch_loss: 0.7378159852082286 || avg_open_gates: 4.053231939163498
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 102 || avg_batch_loss: 0.7392680359430639 || avg_open_gates: 4.190114068441065
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 103 || avg_batch_loss: 0.7380302887225786 || avg_open_gates: 4.7110266159695815
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 104 || avg_batch_loss: 0.7368877139154949 || avg_open_gates: 4.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 105 || avg_batch_loss: 0.7378057183648243 || avg_open_gates: 4.418250950570342
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 106 || avg_batch_loss: 0.7358453789364703 || avg_open_gates: 5.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 107 || avg_batch_loss: 0.7335158119636797 || avg_open_gates: 5.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 108 || avg_batch_loss: 0.7370953622199736 || avg_open_gates: 5.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 109 || avg_batch_loss: 0.7369728305947192 || avg_open_gates: 5.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 109 || valid: r=0.286 RE=8.08% MSE=0.909 gates=5 || test: r=0.332 RE=8.28% MSE=0.965 gates=5 || test@354: r=0.332 RE=8.28% MSE=0.965 gates=5
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 110 || avg_batch_loss: 0.734186660200924 || avg_open_gates: 5.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 111 || avg_batch_loss: 0.7336175962999293 || avg_open_gates: 5.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 112 || avg_batch_loss: 0.730749378186215 || avg_open_gates: 5.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 113 || avg_batch_loss: 0.7336765789487063 || avg_open_gates: 5.102661596958175
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 114 || avg_batch_loss: 0.7330957517424463 || avg_open_gates: 5.228136882129277
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 115 || avg_batch_loss: 0.7343429814273413 || avg_open_gates: 5.76425855513308
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 116 || avg_batch_loss: 0.7324605477626785 || avg_open_gates: 6.258555133079848
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 117 || avg_batch_loss: 0.7319289803958211 || avg_open_gates: 7.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 118 || avg_batch_loss: 0.7336340186260499 || avg_open_gates: 7.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 119 || avg_batch_loss: 0.7348249824328115 || avg_open_gates: 7.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 119 || valid: r=0.302 RE=8.05% MSE=0.900 gates=7 || test: r=0.341 RE=8.25% MSE=0.959 gates=7 || test@354: r=0.341 RE=8.25% MSE=0.959 gates=7
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 120 || avg_batch_loss: 0.7316193024241879 || avg_open_gates: 7.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 121 || avg_batch_loss: 0.7326795107511513 || avg_open_gates: 7.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 122 || avg_batch_loss: 0.7324316507283273 || avg_open_gates: 7.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 123 || avg_batch_loss: 0.7321881708536765 || avg_open_gates: 7.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 124 || avg_batch_loss: 0.7307825354795492 || avg_open_gates: 7.8783269961977185
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 125 || avg_batch_loss: 0.7334904166455505 || avg_open_gates: 8.539923954372624
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 126 || avg_batch_loss: 0.7318699418818543 || avg_open_gates: 8.64638783269962
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 127 || avg_batch_loss: 0.7317175933163429 || avg_open_gates: 8.775665399239545
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 128 || avg_batch_loss: 0.7315289264849384 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 129 || avg_batch_loss: 0.731049047450149 || avg_open_gates: 9.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 129 || valid: r=0.327 RE=8.02% MSE=0.886 gates=9 || test: r=0.357 RE=8.09% MSE=0.936 gates=9 || test@354: r=0.357 RE=8.09% MSE=0.936 gates=9
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 130 || avg_batch_loss: 0.7290044689813041 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 131 || avg_batch_loss: 0.7285070407979842 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 132 || avg_batch_loss: 0.7304354433551035 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 133 || avg_batch_loss: 0.7275691021077987 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 134 || avg_batch_loss: 0.7307706062784667 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 135 || avg_batch_loss: 0.7284850572225259 || avg_open_gates: 9.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 136 || avg_batch_loss: 0.7269724018220213 || avg_open_gates: 9.095057034220533
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 137 || avg_batch_loss: 0.7268963808569164 || avg_open_gates: 10.70342205323194
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 138 || avg_batch_loss: 0.727195264495371 || avg_open_gates: 10.015209125475286
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 139 || avg_batch_loss: 0.7268382283671274 || avg_open_gates: 10.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 139 || valid: r=0.349 RE=7.91% MSE=0.868 gates=10 || test: r=0.365 RE=8.10% MSE=0.933 gates=10 || test@354: r=0.365 RE=8.10% MSE=0.933 gates=10
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 140 || avg_batch_loss: 0.7251519295652556 || avg_open_gates: 10.566539923954373
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 141 || avg_batch_loss: 0.7240872252803339 || avg_open_gates: 10.88212927756654
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 142 || avg_batch_loss: 0.7284207477769018 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 143 || avg_batch_loss: 0.7266748429704528 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 144 || avg_batch_loss: 0.7243193206678326 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 145 || avg_batch_loss: 0.7267173587596009 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 146 || avg_batch_loss: 0.725060657969899 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 147 || avg_batch_loss: 0.7227770519573878 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 148 || avg_batch_loss: 0.7246207799974956 || avg_open_gates: 11.0
+TRAIN -- STG_LAMBDA: 0.001 || lr: 0.001 , || epoch: 149 || avg_batch_loss: 0.7206773933575634 || avg_open_gates: 11.0
+EVAL -- STG_LAMBDA: 0.001 || epoch: 149 || valid: r=0.364 RE=7.86% MSE=0.857 gates=11 || test: r=0.379 RE=8.03% MSE=0.921 gates=11 || test@354: r=0.379 RE=8.03% MSE=0.921 gates=11
+
+FINAL data_split01.pt STG_LAMBDA = 0.001
+unbiased (epoch 149, chosen by best VALID r -> test set never used for selection)  test: r=0.379 RE=8.03% MSE=0.921 gates=11 || test@354: r=0.379 RE=8.03% MSE=0.921 gates=11
+VBS-style (epoch 149, chosen by lowest TEST RE -> optimistic, matches paper's protocol)  test: r=0.379 RE=8.03% MSE=0.921 gates=11
+Traceback (most recent call last):
+  File "/home/matin/STG-ML/main.py", line 55, in <module>
+    main()
+  File "/home/matin/STG-ML/main.py", line 52, in main
+    test(best)
+  File "/home/matin/STG-ML/main.py", line 44, in test
+    m.model.loead_state_dict(best["weights"])
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/matin/STG-ML/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1972, in __getattr__
+    raise AttributeError(
+AttributeError: 'STGModel' object has no attribute 'loead_state_dict'. Did you mean: 'load_state_dict'?
