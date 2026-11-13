@@ -1,0 +1,46 @@
+data_split02_full_fixed_stg1e-05_l10.001_ep1000_seed4 || device: cuda || train (9338, 17114) valid (1037, 17114) test (1037, 17114)
+epoch 25/1000 || lr 9.98e-05 || train_loss 1.0773 || test: r=0.423 RE=7.55% MSE=0.820 gates=17114
+epoch 50/1000 || lr 9.94e-05 || train_loss 0.9711 || test: r=0.440 RE=7.49% MSE=0.807 gates=17114
+epoch 75/1000 || lr 9.86e-05 || train_loss 0.9646 || test: r=0.450 RE=7.47% MSE=0.798 gates=17114
+epoch 100/1000 || lr 9.76e-05 || train_loss 0.9535 || test: r=0.462 RE=7.34% MSE=0.770 gates=17114
+epoch 125/1000 || lr 9.62e-05 || train_loss 0.9500 || test: r=0.470 RE=7.38% MSE=0.781 gates=17114
+epoch 150/1000 || lr 9.46e-05 || train_loss 0.9492 || test: r=0.469 RE=7.28% MSE=0.763 gates=17114
+epoch 175/1000 || lr 9.26e-05 || train_loss 0.9434 || test: r=0.467 RE=7.44% MSE=0.790 gates=17114
+epoch 200/1000 || lr 9.05e-05 || train_loss 0.9395 || test: r=0.479 RE=7.35% MSE=0.770 gates=17114
+epoch 225/1000 || lr 8.80e-05 || train_loss 0.9392 || test: r=0.483 RE=7.30% MSE=0.764 gates=17114
+epoch 250/1000 || lr 8.54e-05 || train_loss 0.9282 || test: r=0.476 RE=7.33% MSE=0.767 gates=17114
+epoch 275/1000 || lr 8.25e-05 || train_loss 0.9293 || test: r=0.483 RE=7.26% MSE=0.759 gates=17114
+epoch 300/1000 || lr 7.94e-05 || train_loss 0.9241 || test: r=0.483 RE=7.28% MSE=0.759 gates=17114
+epoch 325/1000 || lr 7.61e-05 || train_loss 0.9180 || test: r=0.487 RE=7.22% MSE=0.743 gates=17114
+epoch 350/1000 || lr 7.27e-05 || train_loss 0.9182 || test: r=0.484 RE=7.30% MSE=0.764 gates=17114
+epoch 375/1000 || lr 6.91e-05 || train_loss 0.9050 || test: r=0.486 RE=7.29% MSE=0.755 gates=17114
+epoch 400/1000 || lr 6.55e-05 || train_loss 0.9041 || test: r=0.489 RE=7.21% MSE=0.751 gates=17114
+epoch 425/1000 || lr 6.17e-05 || train_loss 0.9004 || test: r=0.486 RE=7.29% MSE=0.757 gates=17114
+epoch 450/1000 || lr 5.78e-05 || train_loss 0.8954 || test: r=0.485 RE=7.25% MSE=0.753 gates=17114
+epoch 475/1000 || lr 5.39e-05 || train_loss 0.8924 || test: r=0.492 RE=7.18% MSE=0.740 gates=17114
+epoch 500/1000 || lr 5.00e-05 || train_loss 0.8827 || test: r=0.493 RE=7.23% MSE=0.741 gates=17114
+epoch 525/1000 || lr 4.61e-05 || train_loss 0.8828 || test: r=0.492 RE=7.20% MSE=0.741 gates=17113
+epoch 550/1000 || lr 4.22e-05 || train_loss 0.8768 || test: r=0.490 RE=7.23% MSE=0.748 gates=17111
+epoch 575/1000 || lr 3.83e-05 || train_loss 0.8698 || test: r=0.494 RE=7.20% MSE=0.743 gates=17107
+epoch 600/1000 || lr 3.45e-05 || train_loss 0.8655 || test: r=0.495 RE=7.26% MSE=0.747 gates=17101
+epoch 625/1000 || lr 3.09e-05 || train_loss 0.8593 || test: r=0.492 RE=7.19% MSE=0.739 gates=17094
+epoch 650/1000 || lr 2.73e-05 || train_loss 0.8528 || test: r=0.493 RE=7.21% MSE=0.743 gates=17081
+epoch 675/1000 || lr 2.39e-05 || train_loss 0.8504 || test: r=0.490 RE=7.25% MSE=0.748 gates=17060
+epoch 700/1000 || lr 2.06e-05 || train_loss 0.8481 || test: r=0.490 RE=7.24% MSE=0.747 gates=17033
+epoch 725/1000 || lr 1.75e-05 || train_loss 0.8441 || test: r=0.494 RE=7.20% MSE=0.740 gates=16998
+epoch 750/1000 || lr 1.46e-05 || train_loss 0.8472 || test: r=0.494 RE=7.21% MSE=0.742 gates=16962
+epoch 775/1000 || lr 1.20e-05 || train_loss 0.8391 || test: r=0.495 RE=7.18% MSE=0.736 gates=16920
+epoch 800/1000 || lr 9.55e-06 || train_loss 0.8299 || test: r=0.494 RE=7.21% MSE=0.739 gates=16889
+epoch 825/1000 || lr 7.37e-06 || train_loss 0.8304 || test: r=0.496 RE=7.19% MSE=0.737 gates=16848
+epoch 850/1000 || lr 5.45e-06 || train_loss 0.8278 || test: r=0.494 RE=7.21% MSE=0.740 gates=16825
+epoch 875/1000 || lr 3.81e-06 || train_loss 0.8272 || test: r=0.494 RE=7.21% MSE=0.741 gates=16799
+epoch 900/1000 || lr 2.45e-06 || train_loss 0.8248 || test: r=0.494 RE=7.20% MSE=0.738 gates=16784
+epoch 925/1000 || lr 1.38e-06 || train_loss 0.8280 || test: r=0.494 RE=7.20% MSE=0.739 gates=16774
+epoch 950/1000 || lr 6.16e-07 || train_loss 0.8251 || test: r=0.495 RE=7.20% MSE=0.738 gates=16770
+epoch 975/1000 || lr 1.54e-07 || train_loss 0.8204 || test: r=0.495 RE=7.20% MSE=0.739 gates=16768
+epoch 1000/1000 || lr 0.00e+00 || train_loss 0.8249 || test: r=0.495 RE=7.20% MSE=0.739 gates=16768
+
+FINAL data_split02_full_fixed_stg1e-05_l10.001_ep1000_seed4
+  final model (headline number, test never used for any choice)   test: r=0.495 RE=7.20% MSE=0.739 gates=16768
+  lowest test RE seen (epoch 775, optimistic upper bound)  test: r=0.495 RE=7.18% MSE=0.736 gates=16920
+saved results/runs/data_split02_full_fixed_stg1e-05_l10.001_ep1000_seed4.json

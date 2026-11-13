@@ -1,0 +1,46 @@
+data_split02_select_stg3e-05_l11e-05_ep1000_seed1 || device: cuda || train (8405, 17114) valid (933, 17114) test (1037, 17114)
+epoch 25/1000 || lr 9.98e-05 || train_loss 1.1250 || valid: r=0.481 RE=7.37% MSE=0.767 gates=17114
+epoch 50/1000 || lr 9.94e-05 || train_loss 1.0583 || valid: r=0.467 RE=7.44% MSE=0.760 gates=17114
+epoch 75/1000 || lr 9.86e-05 || train_loss 1.0181 || valid: r=0.462 RE=7.54% MSE=0.800 gates=17114
+epoch 100/1000 || lr 9.76e-05 || train_loss 0.9846 || valid: r=0.459 RE=7.61% MSE=0.837 gates=17114
+epoch 125/1000 || lr 9.62e-05 || train_loss 0.9597 || valid: r=0.457 RE=7.63% MSE=0.793 gates=17114
+epoch 150/1000 || lr 9.46e-05 || train_loss 0.9405 || valid: r=0.471 RE=7.51% MSE=0.775 gates=17114
+epoch 175/1000 || lr 9.26e-05 || train_loss 0.9103 || valid: r=0.468 RE=7.59% MSE=0.825 gates=17114
+epoch 200/1000 || lr 9.05e-05 || train_loss 0.9040 || valid: r=0.465 RE=7.67% MSE=0.811 gates=17114
+epoch 225/1000 || lr 8.80e-05 || train_loss 0.9107 || valid: r=0.451 RE=7.60% MSE=0.782 gates=17114
+epoch 250/1000 || lr 8.54e-05 || train_loss 0.8842 || valid: r=0.467 RE=7.67% MSE=0.817 gates=17114
+epoch 275/1000 || lr 8.25e-05 || train_loss 0.8804 || valid: r=0.457 RE=7.64% MSE=0.815 gates=17114
+epoch 300/1000 || lr 7.94e-05 || train_loss 0.8708 || valid: r=0.450 RE=7.60% MSE=0.802 gates=17114
+epoch 325/1000 || lr 7.61e-05 || train_loss 0.8555 || valid: r=0.448 RE=7.55% MSE=0.790 gates=17114
+epoch 350/1000 || lr 7.27e-05 || train_loss 0.8488 || valid: r=0.460 RE=7.55% MSE=0.788 gates=17114
+epoch 375/1000 || lr 6.91e-05 || train_loss 0.8472 || valid: r=0.452 RE=7.44% MSE=0.782 gates=17114
+epoch 400/1000 || lr 6.55e-05 || train_loss 0.8436 || valid: r=0.457 RE=7.63% MSE=0.812 gates=17114
+epoch 425/1000 || lr 6.17e-05 || train_loss 0.8285 || valid: r=0.461 RE=7.67% MSE=0.810 gates=17114
+epoch 450/1000 || lr 5.78e-05 || train_loss 0.8207 || valid: r=0.461 RE=7.51% MSE=0.781 gates=17114
+epoch 475/1000 || lr 5.39e-05 || train_loss 0.8235 || valid: r=0.455 RE=7.50% MSE=0.778 gates=17114
+epoch 500/1000 || lr 5.00e-05 || train_loss 0.8164 || valid: r=0.454 RE=7.56% MSE=0.789 gates=17114
+epoch 525/1000 || lr 4.61e-05 || train_loss 0.8019 || valid: r=0.458 RE=7.60% MSE=0.794 gates=17114
+epoch 550/1000 || lr 4.22e-05 || train_loss 0.7993 || valid: r=0.464 RE=7.58% MSE=0.787 gates=17114
+epoch 575/1000 || lr 3.83e-05 || train_loss 0.7925 || valid: r=0.462 RE=7.55% MSE=0.790 gates=17114
+epoch 600/1000 || lr 3.45e-05 || train_loss 0.7927 || valid: r=0.458 RE=7.72% MSE=0.818 gates=17114
+epoch 625/1000 || lr 3.09e-05 || train_loss 0.7857 || valid: r=0.459 RE=7.57% MSE=0.784 gates=17114
+epoch 650/1000 || lr 2.73e-05 || train_loss 0.7838 || valid: r=0.459 RE=7.54% MSE=0.790 gates=17114
+epoch 675/1000 || lr 2.39e-05 || train_loss 0.7855 || valid: r=0.460 RE=7.61% MSE=0.798 gates=17114
+epoch 700/1000 || lr 2.06e-05 || train_loss 0.7776 || valid: r=0.462 RE=7.53% MSE=0.783 gates=17114
+epoch 725/1000 || lr 1.75e-05 || train_loss 0.7646 || valid: r=0.461 RE=7.56% MSE=0.791 gates=17114
+epoch 750/1000 || lr 1.46e-05 || train_loss 0.7679 || valid: r=0.465 RE=7.64% MSE=0.802 gates=17114
+epoch 775/1000 || lr 1.20e-05 || train_loss 0.7689 || valid: r=0.466 RE=7.63% MSE=0.800 gates=17114
+epoch 800/1000 || lr 9.55e-06 || train_loss 0.7638 || valid: r=0.456 RE=7.57% MSE=0.794 gates=17114
+epoch 825/1000 || lr 7.37e-06 || train_loss 0.7597 || valid: r=0.463 RE=7.61% MSE=0.799 gates=17114
+epoch 850/1000 || lr 5.45e-06 || train_loss 0.7607 || valid: r=0.460 RE=7.55% MSE=0.792 gates=17114
+epoch 875/1000 || lr 3.81e-06 || train_loss 0.7586 || valid: r=0.460 RE=7.62% MSE=0.801 gates=17114
+epoch 900/1000 || lr 2.45e-06 || train_loss 0.7584 || valid: r=0.459 RE=7.58% MSE=0.794 gates=17114
+epoch 925/1000 || lr 1.38e-06 || train_loss 0.7564 || valid: r=0.460 RE=7.60% MSE=0.798 gates=17114
+epoch 950/1000 || lr 6.16e-07 || train_loss 0.7586 || valid: r=0.459 RE=7.58% MSE=0.795 gates=17114
+epoch 975/1000 || lr 1.54e-07 || train_loss 0.7607 || valid: r=0.459 RE=7.59% MSE=0.798 gates=17114
+epoch 1000/1000 || lr 0.00e+00 || train_loss 0.7604 || valid: r=0.459 RE=7.58% MSE=0.796 gates=17114
+
+FINAL (tuning) data_split02_select_stg3e-05_l11e-05_ep1000_seed1
+  final model                    valid: r=0.459 RE=7.58% MSE=0.796 gates=17114
+  best checkpoint (epoch 25)   valid: r=0.481 RE=7.37% MSE=0.767 gates=17114
+saved results/runs/data_split02_select_stg3e-05_l11e-05_ep1000_seed1.json

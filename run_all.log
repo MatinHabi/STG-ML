@@ -1,0 +1,167 @@
+GPU: NVIDIA T1000 8GB
+
+=== 2026-11-10 12:39:54  0/7  data files
+
+=== 2026-11-10 12:39:54  1/7  data check: ridge on all markers vs the paper's LMM
+ridge on ALL markers (train on 90%, score the paper's test plants) vs the paper's LMM:
+  split 01: r = 0.525 (paper LMM 0.52) || RE = 7.36% (paper LMM 7.38%) || alpha 10000 || 49s
+  split 02: r = 0.489 (paper LMM 0.49) || RE = 7.19% (paper LMM 7.21%) || alpha 10000 || 52s
+  split 03: r = 0.499 (paper LMM 0.50) || RE = 7.46% (paper LMM 7.44%) || alpha 10000 || 52s
+  split 04: r = 0.479 (paper LMM 0.47) || RE = 7.30% (paper LMM 7.31%) || alpha 10000 || 52s
+if r is within ~0.02-0.03 of the paper's LMM on every split, your data matches theirs
+
+=== 2026-11-10 12:43:21  2/7  tuning: 4 splits x 5 STG lambdas x 2 L1 x 2 epoch counts
+
+=== 2026-11-11 01:25:34  3/7  choosing settings on the validation plants
+
+split 01 tuning runs (validation plants only), best first:
+  stg_lambda      l1 epochs | final r    RE%  gates | best checkpoint r (epoch)
+       1e-05   0.001   1000 |   0.454   7.60  17103 | 0.457 (500)
+       3e-05   0.001   1000 |   0.451   7.61   4426 | 0.455 (350)
+       3e-05   0.001   3000 |   0.450   7.60   1346 | 0.454 (350)
+      0.0001   0.001   3000 |   0.449   7.62    457 | 0.450 (2650)
+       1e-05   0.001   3000 |   0.449   7.60   5168 | 0.457 (675)
+      0.0001   0.001   1000 |   0.444   7.69    972 | 0.448 (450)
+       1e-05   1e-05   3000 |   0.442   7.90  17114 | 0.456 (75)
+      0.0001   1e-05   1000 |   0.442   7.63  17113 | 0.456 (50)
+       3e-05   1e-05   1000 |   0.434   7.84  17114 | 0.448 (75)
+      0.0003   0.001   1000 |   0.424   7.83    326 | 0.438 (225)
+       3e-05   1e-05   3000 |   0.424   8.00  16550 | 0.453 (75)
+       1e-05   1e-05   1000 |   0.420   7.92  17114 | 0.461 (25)
+      0.0003   0.001   3000 |   0.418   7.76    122 | 0.438 (225)
+      0.0001   1e-05   3000 |   0.387   7.82   5588 | 0.455 (25)
+      0.0003   1e-05   3000 |   0.355   8.13    653 | 0.458 (50)
+      0.0003   1e-05   1000 |   0.346   8.14   9113 | 0.456 (250)
+       0.001   0.001   3000 |   0.333   7.99     15 | 0.439 (175)
+       0.001   0.001   1000 |   0.322   8.20     23 | 0.434 (150)
+       0.001   1e-05   1000 |   0.287   8.25    374 | 0.456 (25)
+       0.001   1e-05   3000 |   0.228   8.27      9 | 0.461 (50)
+  -> best: stg_lambda=1e-05 l1=0.001 epochs=1000 (valid r=0.454, RE=7.60%, 17103 open gates)
+  -> sparse: stg_lambda=0.0003 l1=0.001 epochs=1000 (valid r=0.424, RE=7.83%, 326 open gates)
+
+split 02 tuning runs (validation plants only), best first:
+  stg_lambda      l1 epochs | final r    RE%  gates | best checkpoint r (epoch)
+       1e-05   0.001   1000 |   0.489   7.30  17101 | 0.489 (475)
+       3e-05   0.001   3000 |   0.485   7.33   1371 | 0.488 (1675)
+       3e-05   0.001   1000 |   0.485   7.33   4575 | 0.485 (925)
+       1e-05   0.001   3000 |   0.484   7.34   5356 | 0.487 (475)
+      0.0001   0.001   3000 |   0.479   7.33    487 | 0.480 (1675)
+       3e-05   1e-05   3000 |   0.470   7.59  16232 | 0.479 (25)
+      0.0001   0.001   1000 |   0.469   7.41   1000 | 0.471 (175)
+       3e-05   1e-05   1000 |   0.459   7.58  17114 | 0.481 (25)
+       1e-05   1e-05   1000 |   0.455   7.67  17114 | 0.483 (25)
+      0.0003   0.001   1000 |   0.454   7.53    321 | 0.471 (175)
+       1e-05   1e-05   3000 |   0.454   7.78  17114 | 0.480 (25)
+      0.0001   1e-05   1000 |   0.449   7.49  17114 | 0.477 (50)
+      0.0001   1e-05   3000 |   0.441   7.52   5308 | 0.483 (25)
+      0.0003   0.001   3000 |   0.437   7.49    122 | 0.470 (150)
+      0.0003   1e-05   1000 |   0.409   7.85   9163 | 0.482 (25)
+      0.0003   1e-05   3000 |   0.407   7.85    635 | 0.483 (25)
+       0.001   0.001   3000 |   0.360   7.74     12 | 0.472 (175)
+       0.001   0.001   1000 |   0.342   8.02     23 | 0.472 (175)
+       0.001   1e-05   1000 |   0.305   8.02    328 | 0.481 (25)
+       0.001   1e-05   3000 |   0.246   8.07      5 | 0.481 (25)
+  -> best: stg_lambda=1e-05 l1=0.001 epochs=1000 (valid r=0.489, RE=7.30%, 17101 open gates)
+  -> sparse: stg_lambda=0.0003 l1=0.001 epochs=1000 (valid r=0.454, RE=7.53%, 321 open gates)
+
+split 03 tuning runs (validation plants only), best first:
+  stg_lambda      l1 epochs | final r    RE%  gates | best checkpoint r (epoch)
+       1e-05   0.001   1000 |   0.462   7.56  17099 | 0.465 (400)
+       3e-05   0.001   1000 |   0.459   7.61   4992 | 0.459 (925)
+       3e-05   0.001   3000 |   0.458   7.59   1493 | 0.461 (1475)
+       1e-05   0.001   3000 |   0.455   7.59   5339 | 0.465 (350)
+      0.0001   1e-05   1000 |   0.454   7.59  17114 | 0.475 (25)
+       1e-05   1e-05   3000 |   0.447   7.81  17114 | 0.478 (25)
+       3e-05   1e-05   1000 |   0.446   7.84  17114 | 0.472 (25)
+       3e-05   1e-05   3000 |   0.445   7.90  16033 | 0.476 (175)
+      0.0001   0.001   3000 |   0.444   7.65    480 | 0.446 (1050)
+      0.0001   0.001   1000 |   0.442   7.70   1063 | 0.445 (275)
+       1e-05   1e-05   1000 |   0.438   7.86  17114 | 0.474 (25)
+      0.0001   1e-05   3000 |   0.429   7.70   5162 | 0.478 (25)
+      0.0003   0.001   1000 |   0.418   7.82    328 | 0.442 (225)
+      0.0003   0.001   3000 |   0.411   7.74    118 | 0.442 (225)
+      0.0003   1e-05   3000 |   0.403   7.97    661 | 0.477 (25)
+      0.0003   1e-05   1000 |   0.376   8.12   8997 | 0.477 (25)
+       0.001   0.001   3000 |   0.365   7.89     12 | 0.446 (225)
+       0.001   0.001   1000 |   0.359   8.15     23 | 0.450 (175)
+       0.001   1e-05   1000 |   0.291   8.14    325 | 0.473 (175)
+       0.001   1e-05   3000 |   0.272   8.24      8 | 0.473 (25)
+  -> best: stg_lambda=1e-05 l1=0.001 epochs=1000 (valid r=0.462, RE=7.56%, 17099 open gates)
+  -> sparse: stg_lambda=0.0003 l1=0.001 epochs=1000 (valid r=0.418, RE=7.82%, 328 open gates)
+
+split 04 tuning runs (validation plants only), best first:
+  stg_lambda      l1 epochs | final r    RE%  gates | best checkpoint r (epoch)
+       1e-05   0.001   1000 |   0.486   7.32  17104 | 0.489 (700)
+       1e-05   0.001   3000 |   0.486   7.31   5561 | 0.489 (575)
+       3e-05   0.001   1000 |   0.482   7.33   5471 | 0.483 (800)
+       3e-05   0.001   3000 |   0.477   7.34   1454 | 0.484 (725)
+      0.0001   0.001   3000 |   0.471   7.37    506 | 0.473 (1200)
+      0.0001   0.001   1000 |   0.469   7.42   1108 | 0.470 (575)
+      0.0001   1e-05   1000 |   0.459   7.45  17114 | 0.483 (25)
+       1e-05   1e-05   1000 |   0.450   7.74  17114 | 0.480 (25)
+       3e-05   1e-05   3000 |   0.449   7.73  16347 | 0.484 (25)
+       1e-05   1e-05   3000 |   0.448   7.77  17114 | 0.489 (25)
+      0.0001   1e-05   3000 |   0.442   7.63   5317 | 0.486 (25)
+      0.0003   0.001   1000 |   0.441   7.64    375 | 0.468 (125)
+       3e-05   1e-05   1000 |   0.436   7.76  17114 | 0.487 (75)
+      0.0003   0.001   3000 |   0.432   7.55    132 | 0.468 (125)
+      0.0003   1e-05   3000 |   0.394   8.09    648 | 0.482 (25)
+      0.0003   1e-05   1000 |   0.388   8.16   9437 | 0.481 (25)
+       0.001   0.001   3000 |   0.362   7.79     15 | 0.471 (150)
+       0.001   1e-05   1000 |   0.351   8.22    398 | 0.485 (25)
+       0.001   0.001   1000 |   0.349   8.13     27 | 0.471 (150)
+       0.001   1e-05   3000 |   0.264   8.30      7 | 0.485 (200)
+  -> best: stg_lambda=1e-05 l1=0.001 epochs=1000 (valid r=0.486, RE=7.32%, 17104 open gates)
+  -> sparse: stg_lambda=0.0003 l1=0.001 epochs=1000 (valid r=0.441, RE=7.64%, 375 open gates)
+
+wrote results/chosen_config.json
+
+=== 2026-11-11 01:25:35  4/7  final runs: train on all 90%, score the final model on the test plants (5 seeds each)
+
+=== 2026-11-11 04:57:49  5/7  marker quality: refit test, stability, redundancy
+split 01: refit test done (559s)
+split 02: refit test done (568s)
+split 03: refit test done (547s)
+split 04: refit test done (559s)
+[best] 20 runs over splits ['01', '02', '03', '04']
+  K=50: within-split exact 0.788, LD 0.8644999742507935
+  K=100: within-split exact 0.81375, LD 0.8761249803006649
+  K=354: within-split exact 0.8381355932203391, LD 0.9134533889591694
+  K=500: within-split exact 0.8445499999999999, LD 0.9244750417768955
+  K=1000: within-split exact 0.8542000000000002, LD 0.9338750436902046
+[sparse] 20 runs over splits ['01', '02', '03', '04']
+  K=50: within-split exact 0.8175000000000001, LD 0.8779999740421772
+  K=100: within-split exact 0.76125, LD 0.8472499817609787
+  K=354: within-split exact 0.7681497175141242, LD 0.8925494350492954
+  K=500: within-split exact 0.7596, LD 0.8954000413417816
+  K=1000: within-split exact 0.746825, LD 0.8835125416517258
+wrote results/stability.json
+
+=== 2026-11-11 05:35:15  6/7  simulation with known true markers
+candidate true markers: high pool 3332 (max |r| >= 0.99), low pool 3333 (max |r| <= 0.92)
+wrote sim_data/sim_high_m20_rep2.pt
+wrote sim_data/sim_high_m20_rep3.pt
+wrote sim_data/sim_high_m100_rep1.pt
+wrote sim_data/sim_high_m100_rep2.pt
+wrote sim_data/sim_high_m100_rep3.pt
+wrote sim_data/sim_low_m20_rep2.pt
+wrote sim_data/sim_low_m20_rep3.pt
+wrote sim_data/sim_low_m100_rep1.pt
+wrote sim_data/sim_low_m100_rep2.pt
+wrote sim_data/sim_low_m100_rep3.pt
+sim_high_m100_rep1_fixed_stg0.0003_l10.001_ep1000_seed1: open gates 340, top-m recall 0.19 (LD 0.22)
+sim_high_m100_rep2_fixed_stg0.0003_l10.001_ep1000_seed2: open gates 537, top-m recall 0.24 (LD 0.26)
+sim_high_m100_rep3_fixed_stg0.0003_l10.001_ep1000_seed3: open gates 433, top-m recall 0.28 (LD 0.30)
+sim_high_m20_rep1_fixed_stg0.0003_l10.001_ep1000_seed1: open gates 190, top-m recall 0.45 (LD 0.50)
+sim_high_m20_rep2_fixed_stg0.0003_l10.001_ep1000_seed2: open gates 175, top-m recall 0.25 (LD 0.30)
+sim_high_m20_rep3_fixed_stg0.0003_l10.001_ep1000_seed3: open gates 244, top-m recall 0.35 (LD 0.40)
+sim_low_m100_rep1_fixed_stg0.0003_l10.001_ep1000_seed1: open gates 530, top-m recall 0.42 (LD 0.42)
+sim_low_m100_rep2_fixed_stg0.0003_l10.001_ep1000_seed2: open gates 555, top-m recall 0.38 (LD 0.41)
+sim_low_m100_rep3_fixed_stg0.0003_l10.001_ep1000_seed3: open gates 377, top-m recall 0.31 (LD 0.34)
+sim_low_m20_rep1_fixed_stg0.0003_l10.001_ep1000_seed1: open gates 187, top-m recall 0.65 (LD 0.65)
+sim_low_m20_rep2_fixed_stg0.0003_l10.001_ep1000_seed2: open gates 210, top-m recall 0.50 (LD 0.50)
+sim_low_m20_rep3_fixed_stg0.0003_l10.001_ep1000_seed3: open gates 287, top-m recall 0.65 (LD 0.65)
+wrote results/sim_scores.json
+
+=== 2026-11-11 06:32:30  7/7  summary
+Done. Report: results/summary.md
